@@ -109,7 +109,7 @@ export const getUpcomingMovies = () => {
 
   export const getTrendingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/trending`
   )
     .then((response) => {
       if (!response.ok) {
@@ -126,7 +126,7 @@ export const getUpcomingMovies = () => {
 
 export const getNowPlayingMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/now_playing`
   )
     .then((response) => {
       if (!response.ok) {
@@ -143,7 +143,7 @@ export const getNowPlayingMovies = () => {
 
   export const getTopRatedMovies = () => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `http://localhost:8080/api/movies/top_rated`
   )
     .then((response) => {
       if (!response.ok) {
