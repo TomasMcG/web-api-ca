@@ -16,12 +16,13 @@ export const getMovies = () => {
 
 
 
-
-
 export const getMovie = (args) => {
   console.log(args)
+    const [, idPart] = args.queryKey;
+      const { id } = idPart;
+ 
   return fetch(
-        `http://localhost:8080/api/movies/getMovie`
+        `http://localhost:8080/api/movies/${id}/getMovie`
   ).then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {
@@ -36,19 +37,20 @@ export const getMovie = (args) => {
 };
 
 
+
 export const getGenres = () => {
   return fetch( `http://localhost:8080/api/movies/genres`
   )
-    .then(res => res.json())
-    .then(json => json.genres);
+    .then(res => res.json());
+    
 };
 
 
-
-
-  export const getMovieImages = () => {
+  export const getMovieImages = ({queryKey}) => {
+      const [, idPart] = queryKey;
+    const { id } = idPart;
     return fetch(
-    `http://localhost:8080/api/movies/movieImages`
+    `http://localhost:8080/api/movies/${id}/movieImages`
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
@@ -64,11 +66,11 @@ export const getGenres = () => {
 
 
 
-  export const getMovieReviews = ({ queryKey }) => {
+  export const getMovieReviews = ({queryKey}) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
     return fetch(
-      `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${import.meta.env.VITE_TMDB_KEY}`
+      `http://localhost:8080/api/movies/${id}/movieReviews`
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
@@ -81,6 +83,8 @@ export const getGenres = () => {
       throw error
    });
   };
+  
+
 
 export const getUpcomingMovies = () => {
   return fetch(
