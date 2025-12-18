@@ -18,6 +18,7 @@ import PersonPage from "./pages/personPage";
 import MoviePlaylistPage from "./pages/moviePlaylistPage";
 import SignUpPage from "./pages/signUpPage";
 import LoginPage from "./pages/loginPage";
+import AuthContextProvider from "./contexts/authContext";
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <SiteHeader />
+        <AuthContextProvider>
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
@@ -56,6 +58,7 @@ const App = () => {
 
           </Routes>
         </MoviesContextProvider>
+        </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
