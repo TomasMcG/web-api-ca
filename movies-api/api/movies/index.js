@@ -59,30 +59,27 @@ router.get('/:movieId/movieReviews',asyncHandler(async (req,res) => {
 
 router.get('/:movieId/movieRecommendations',asyncHandler(async (req,res) => {
     const movieId = req.params.movieId;
-    const movieReviews = await getMovieRecommendations(movieId);
-    res.status(200).json(movieReviews);
+    const movieRecommendations = await getMovieRecommendations(movieId);
+    res.status(200).json(movieRecommendations);
 }));
 
 router.get('/:movieId/movieCredits',asyncHandler(async (req,res) => {
     const movieId = req.params.movieId;
-    const movieReviews = await getMovieCredits(movieId);
-    res.status(200).json(movieReviews);
+    const movieCredits = await getMovieCredits(movieId);
+    res.status(200).json(movieCredits);
 }));
 
 router.get('/:personId/person',asyncHandler(async (req,res) => {
     const personId = req.params.personId;
-    const movieReviews = await getPerson(personId);
-    res.status(200).json(movieReviews);
+    const person = await getPerson(personId);
+    res.status(200).json(person);
 }));
 
 router.get('/:personId/personMovieCredits',asyncHandler(async (req,res) => {
     const personId = req.params.personId;
-    const movieReviews = await getPersonMovieCredits(personId);
-    res.status(200).json(movieReviews);
+    const personMovieCredits = await getPersonMovieCredits(personId);
+    res.status(200).json(personMovieCredits);
 }));
-
-
-
 
 
 export default router;

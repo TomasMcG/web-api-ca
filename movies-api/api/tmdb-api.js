@@ -152,7 +152,7 @@ export const getGenres = () => {
       return response.json();
     })
     .catch((error) => {
-      throw error
+      throw error;
    });
   };
 
@@ -203,6 +203,6 @@ export const getGenres = () => {
       return response.json();
     })
     .catch((error) => {
-      throw error
+      throw error;
    });
   };
