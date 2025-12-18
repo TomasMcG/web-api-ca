@@ -42,6 +42,8 @@ const SiteHeader = () => {
     { label: "Trending", path: "/movies/trending" },
     { label: "Now Playing", path: "/movies/now-playing" },
     { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "Login", path: "/movies/login" },
+    { label: "Sign Up", path: "/movies/signUp" }
   ];
 
   const handleMenuSelect = (pageURL) => {

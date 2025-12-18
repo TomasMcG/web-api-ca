@@ -16,6 +16,8 @@ import NowPlayingPage from "./pages/nowPlayingPage"
 import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 import PersonPage from "./pages/personPage";
 import MoviePlaylistPage from "./pages/moviePlaylistPage";
+import SignUpPage from "./pages/signUpPage";
+import LoginPage from "./pages/loginPage";
 
 
 
@@ -48,6 +50,9 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={ <Navigate to="/" /> } />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path ="/movies/signUp" element={ <SignUpPage/> } />
+            <Route path ="/movies/login" element={ <LoginPage/> } />
+
 
           </Routes>
         </MoviesContextProvider>
