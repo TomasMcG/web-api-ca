@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -16,6 +16,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { AuthContext } from "../../contexts/authContext";
+
 
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
@@ -28,23 +30,37 @@ const SiteHeader = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   
   const navigate = useNavigate();
+  const context = useContext(AuthContext);
 
     const toggleDrawer = (open) => () => {setDrawerOpen(open); };
     const [drawerOpen, setDrawerOpen] = useState(false);
  
-  
+
+
+
+
+
 
   const menuOptions = [
     { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favorites" },
-    { label: "Playlist", path: "/movies/playlist" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Now Playing", path: "/movies/now-playing" },
-    { label: "Top Rated", path: "/movies/top-rated" },
-    { label: "Login", path: "/movies/login" },
-    { label: "Sign Up", path: "/movies/signUp" }
+    { label: "Top Rated", path: "/movies/top-rated" }
   ];
+
+  const loginMenuOptions = [{ label: "Login", path: "/movies/login" },
+    { label: "Sign Up", path: "/movies/signUp" }]
+
+const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
+    { label: "Playlist", path: "/movies/playlist" },{ label: "Logout", path: "/movies/logout" }]
+
+   {context.isAuthenticated ? (
+          menuOptions.push(...loggedInMenuOption)
+        ) : (
+          menuOptions.push(...loginMenuOptions)
+        )}
+
 
   const handleMenuSelect = (pageURL) => {
     setAnchorEl(null);

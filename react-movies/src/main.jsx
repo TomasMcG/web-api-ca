@@ -35,9 +35,10 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
       <BrowserRouter>
         <SiteHeader />
-        <AuthContextProvider>
+        
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
@@ -58,8 +59,9 @@ const App = () => {
 
           </Routes>
         </MoviesContextProvider>
-        </AuthContextProvider>
+        
       </BrowserRouter>
+      </AuthContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
