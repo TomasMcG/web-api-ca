@@ -129,6 +129,7 @@ const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
                       {opt.label}
                     </MenuItem>
                   ))}
+                  
                 </Menu>
               </>
             ) : (
@@ -153,9 +154,18 @@ const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
             edge="end"
             sx={{ ml: 1 }}
             onClick={toggleDrawer(true)}
-          >
+          > </IconButton>
+        
             <MenuIcon />
-          </IconButton>
+            {context.isAuthenticated ?(<Button 
+  onClick={() => context.signout()}
+  sx={{ color: "#ffffffff" }}
+>
+  Sign Out
+</Button>):(<></>)}
+            
+        
+          
 
           <Drawer
             anchor="right"
@@ -164,6 +174,7 @@ const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
           >
             {DrawerList}
           </Drawer>
+          
               </>
             )}
         </Toolbar>
