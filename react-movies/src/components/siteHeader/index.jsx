@@ -83,6 +83,9 @@ const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
     </List>
   );
 
+ let headerText = "Discover new and upcoming movies"
+  {context.isAuthenticated ?(headerText = "Hello:" + context.userName):(<></>)}
+
   return (
     <>
       <AppBar position="fixed" sx={{ backgroundColor: "#0b5e19ff"}}>
@@ -91,7 +94,7 @@ const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Discover new and upcoming movies!
+            {headerText}
           </Typography>
             {isMobile ? (
               <>
