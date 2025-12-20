@@ -8,16 +8,27 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [registered, setRegistered] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   
   const register = async () => {
     let passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     const validPassword = passwordRegEx.test(password);
 
-    if (validPassword && password === passwordAgain) {
+    if (validPassword && password === passwordAgain && userName != "") {
       let result = await context.register(userName, password);
       setRegistered(result);
     }
+    else if (userName === ""){
+       setErrorMessage("Please enter a username ");
+    }
+    else if (validPassword == false){
+       setErrorMessage("Password must be at least 8 characters, include at least one letter, one number, and one special character ");
+    }
+    else if (password != passwordAgain){
+       setErrorMessage("Passwords do not match");
+    }
   }
+
 
   if (registered === true) {
     return <Navigate to="/login" />;
@@ -27,6 +38,17 @@ const SignUpPage = () => {
     <>
       <h2>SignUp page</h2>
       <p>You must register a username and password to log in. Usernames must be unique and passwords must contain a minimum of 8 characters (with at least one uppercase letter, one lowercase letter, and one symbol). </p>
+      {errorMessage && (
+        <div style={{
+          backgroundColor: "#ffebee",
+          color: "#c62828",
+          padding: "10px",
+          borderRadius: "4px",
+          marginBottom: "15px"
+        }}>
+          {errorMessage}
+        </div>
+      )}
       <input value={userName} placeholder="user name" onChange={e => {
         setUserName(e.target.value);
       }}></input><br />
