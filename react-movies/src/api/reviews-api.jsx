@@ -38,3 +38,18 @@ export const deleteUserReview= async (id) => {
     )
     return res;
 };
+
+export const editUserReview = async (data) => {
+    const res = await fetch(
+        `http://localhost:8080/api/reviews/${data._id}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': window.localStorage.getItem('token')
+            },
+            body: JSON.stringify(data)
+        }
+    )
+        return res.json();
+};

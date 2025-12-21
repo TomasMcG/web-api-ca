@@ -7,11 +7,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router";
-import { getUserReviews,deleteUserReview } from "../../api/reviews-api";
+import { getUserReviews,deleteUserReview,editUserReview } from "../../api/reviews-api";
 import { excerpt } from "../../util";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
 import { getMovie } from "../../api/tmdb-api";
+import EditReviewIcon from "../cardIcons/editReview";
 
 
 export default function UserMovieReviews() {
@@ -31,6 +32,12 @@ const [reviewState, setReviewState] = useState({reviews:[]});
 
   const  deleteHandler = async (id)=> {
     await deleteUserReview(id);
+    const newReviews = await getUserReviews();
+    setReviewState({reviews: newReviews})
+  }
+
+  const editHandler= async (id)=> {
+    await editUserReview(id);
     const newReviews = await getUserReviews();
     setReviewState({reviews: newReviews})
   }
@@ -59,6 +66,7 @@ const reviews = reviewState.reviews;
             <TableCell align="center">Review</TableCell>
             <TableCell align="right">Rating</TableCell>
             <TableCell>Delete</TableCell>
+            <TableCell>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -75,6 +83,7 @@ const reviews = reviewState.reviews;
               {r.rating}/5
               </TableCell>
               <TableCell>  <button className='deleteButton' onClick={() => deleteHandler(r._id)}>Delete</button></TableCell>
+               <TableCell><EditReviewIcon review={r} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
