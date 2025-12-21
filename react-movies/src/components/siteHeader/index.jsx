@@ -46,8 +46,7 @@ const SiteHeader = () => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Now Playing", path: "/movies/now-playing" },
-    { label: "Top Rated", path: "/movies/top-rated" },
-    { label: "User Reviews", path: "/movies/userReviews" }
+    { label: "Top Rated", path: "/movies/top-rated" }
 
   ];
 
@@ -55,7 +54,8 @@ const SiteHeader = () => {
     { label: "Sign Up", path: "/movies/signUp" }]
 
 const loggedInMenuOption = [{ label: "Favorites", path: "/movies/favorites" },
-    { label: "Playlist", path: "/movies/playlist" },{ label: "Logout", path: "/movies/logout" }]
+    { label: "Playlist", path: "/movies/playlist" },
+    { label: "User Reviews", path: "/movies/userReviews" },{ label: "Logout", path: "/" }]
 
    {context.isAuthenticated ? (
           menuOptions.push(...loggedInMenuOption)
