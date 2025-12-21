@@ -25,3 +25,16 @@ export const getUserReviews = async () => {
     
     return response.json();
 };
+
+export const deleteUserReview= async (id) => {
+    const res =  fetch(
+        `http://localhost:8080/api/reviews/${id}`,
+        {
+            method: 'DELETE',
+            headers: {
+                'Authorization': window.localStorage.getItem('token')
+            }
+        }
+    )
+    return res;
+};

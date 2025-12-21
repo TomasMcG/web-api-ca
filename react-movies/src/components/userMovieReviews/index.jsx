@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router";
-import { getUserReviews } from "../../api/reviews-api";
+import { getUserReviews,deleteUserReview } from "../../api/reviews-api";
 import { excerpt } from "../../util";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
@@ -20,7 +20,20 @@ export default function UserMovieReviews() {
     queryFn: getUserReviews,
   });
 
+const [reviewState, setReviewState] = useState({reviews:[]});
 
+
+    useEffect(() => {
+    getUserReviews().then(data => {
+      setReviewState({reviews: data});
+    });
+  }, []);
+
+  const  deleteHandler = async (id)=> {
+    await deleteUserReview(id);
+    const newReviews = await getUserReviews();
+    setReviewState({reviews: newReviews})
+  }
   
   
   if (isPending) {
@@ -32,9 +45,7 @@ export default function UserMovieReviews() {
   }
 
 
-   const reviews = data;
-
-
+const reviews = reviewState.reviews;
 
   return (
     
@@ -47,6 +58,7 @@ export default function UserMovieReviews() {
             <TableCell >Author</TableCell>
             <TableCell align="center">Review</TableCell>
             <TableCell align="right">Rating</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -59,9 +71,10 @@ export default function UserMovieReviews() {
                 {r.author}
               </TableCell>
               <TableCell >{r.content}</TableCell>
-              <TableCell >
+              <TableCell align="right" >
               {r.rating}/5
               </TableCell>
+              <TableCell>  <button className='deleteButton' onClick={() => deleteHandler(r._id)}>Delete</button></TableCell>
             </TableRow>
           ))}
         </TableBody>
