@@ -9,6 +9,7 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
+import { addReview } from "../../api/tmdb-api";
 
 
 
@@ -96,12 +97,19 @@ const ReviewForm = ({ movie }) => {
     setRating(event.target.value);
   };
 
-  const onSubmit = (review) => {
+  const onSubmit = async (review) => {
     review.movieId = movie.id;
     review.rating = rating;
     console.log(review);
-    context.addReview(movie, review);
-    setOpen(true); 
+      try {
+    const newReview = await addReview(review);
+    console.log('Review saved:', newReview);
+    
+    //context.addReview(movie, review);
+
+    setOpen(true); }
+    catch(error){ console.error('Failed to save review:', error);
+    alert(`Error: ${error.message}`);}
   };
 
 

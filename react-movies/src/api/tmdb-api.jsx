@@ -250,3 +250,18 @@ export const signup = async (username, password) => {
     });
     return response.json();
 };
+
+export const addReview = async(data) => {
+    const res = await fetch(
+        `http://localhost:8080/api/reviews`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': window.localStorage.getItem('token')
+            },
+            body: JSON.stringify(data)
+        }
+    )
+        return res.json();
+};
