@@ -80,7 +80,7 @@ const ReviewForm = ({ movie }) => {
   
   const defaultValues = {
     author: "",
-    review: "",
+    content: "",
     agree: false,
     rating: "3",
   };
@@ -99,9 +99,9 @@ const ReviewForm = ({ movie }) => {
   const onSubmit = (review) => {
     review.movieId = movie.id;
     review.rating = rating;
-    // console.log(review);
+    console.log(review);
     context.addReview(movie, review);
-    setOpen(true); // NEW
+    setOpen(true); 
   };
 
 
@@ -157,7 +157,7 @@ const ReviewForm = ({ movie }) => {
           </Typography>
         )}
         <Controller
-          name="review"
+          name="content"
           control={control}
           rules={{
             required: "Review cannot be empty.",
@@ -170,19 +170,19 @@ const ReviewForm = ({ movie }) => {
               margin="normal"
               required
               fullWidth
-              name="review"
+              name="content"
               value={value}
               onChange={onChange}
               label="Review text"
-              id="review"
+              id="content"
               multiline
               minRows={10}
             />
           )}
         />
-        {errors.review && (
+        {errors.content && (
           <Typography variant="h6" component="p">
-            {errors.review.message}
+            {errors.content.message}
           </Typography>
         )}
 
