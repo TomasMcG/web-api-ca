@@ -7,10 +7,10 @@ const ReviewSchema = new Schema({
   rating: { type: Number, enum: [0,1,2,3,4,5], required: true },
   created_at: {type:Date, default: Date.now},
   content: { type: String, required: true },
- /* userId: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-},*/
+},
 author: {type:String, required: true},
 
 });

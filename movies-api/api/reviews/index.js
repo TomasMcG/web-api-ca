@@ -6,17 +6,23 @@ import Review from './reviewModel';
 const router = express.Router(); 
 
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     
     const reviews = await Review.find();
     console.log(reviews);
     res.json(reviews);
     //res.json(reviewData.reviews);
+});*/
+
+router.get('/', async (req, res) => {
+    
+    const reviews = await Review.find({ userId: `${req.user._id}`});
+    res.status(200).json(reviews);
 });
 
 router.post('/', asyncHandler(async (req, res) => {
     const newReview = req.body;
-    //newReview.userId = req.user._id;
+    newReview.userId = req.user._id;
     const review = await Review(newReview).save();
     res.status(201).json(review);
 }));
