@@ -46,7 +46,9 @@ const SiteHeader = () => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Now Playing", path: "/movies/now-playing" },
-    { label: "Top Rated", path: "/movies/top-rated" }
+    { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "User Reviews", path: "/movies/userReviews" }
+
   ];
 
   const loginMenuOptions = [{ label: "Login", path: "/movies/login" },

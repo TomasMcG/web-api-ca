@@ -5,8 +5,11 @@ import Review from './reviewModel';
 
 const router = express.Router(); 
 
-router.get('/', (req, res) => {
-    res.json(reviewData);
+router.get('/', async (req, res) => {
+    //res.json(reviewData);
+    const reviews = await Review.find();
+    console.log(reviews);
+    res.json(reviews);
 });
 
 router.post('/', asyncHandler(async (req, res) => {
