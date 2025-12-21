@@ -14,7 +14,7 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews";
 import MovieRecommendations from "../movieRecommendations";
 import MovieCredits from "../movieCredits";
-
+import { Link } from "react-router";
 
 
 
@@ -124,6 +124,23 @@ const [creditsOpen, setCreditsOpen] = useState(false);
           right: "20em",
         }}
       >
+        <Fab
+  component={Link}
+  to={`/movies/${movie.id}/user-reviews`}
+  color="primary"
+  variant="extended"
+  sx={{
+    position: 'fixed',
+    bottom: '1em',
+    marginLeft: '30em',
+    marginRight: '30em',
+    right: '30em', // Adjust position between other FABs
+    backgroundColor: "#1976d2" // Blue color
+  }}
+>
+  
+  User Reviews
+</Fab>
         <RecommendIcon />
         Recommendations
       </Fab>

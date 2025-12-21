@@ -20,6 +20,14 @@ router.get('/', async (req, res) => {
     res.status(200).json(reviews);
 });
 
+router.get('/movie/:movieId', async (req, res) => {
+        const reviews = await Review.find({ 
+            movieId: req.params.movieId 
+        });
+        res.status(200).json(reviews);
+    
+});
+
 router.post('/', asyncHandler(async (req, res) => {
     const newReview = req.body;
     newReview.userId = req.user._id;

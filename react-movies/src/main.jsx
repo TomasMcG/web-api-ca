@@ -21,6 +21,7 @@ import LoginPage from "./pages/loginPage";
 import AuthContextProvider from "./contexts/authContext";
 import UserReviewsPage from "./pages/userReviewsPage";
 import EditReviewPage from "./pages/editMovieReviewPage";
+import MovieUserReviewsPage from "./pages/allUserReviewsForMovie";
 
 
 
@@ -59,6 +60,8 @@ const App = () => {
             <Route path ="/movies/signUp" element={ <SignUpPage/> } />
             <Route path ="/movies/login" element={ <LoginPage/> } />
             <Route path ="/movies/userReviews" element={ <UserReviewsPage/> } />
+             <Route path ="/movies/:movieId/user-reviews" element={ <MovieUserReviewsPage/> } />
+
 
 
           </Routes>

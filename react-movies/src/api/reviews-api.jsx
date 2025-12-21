@@ -26,6 +26,18 @@ export const getUserReviews = async () => {
     return response.json();
 };
 
+export const getReviewsForMovie = async (movieId) => {
+    const response = await fetch(
+        `http://localhost:8080/api/reviews/movie/${movieId}`, {
+            headers: {
+                'Authorization': window.localStorage.getItem('token')
+            }
+        }
+    );
+    
+    return response.json();
+};
+
 export const deleteUserReview= async (id) => {
     const res =  fetch(
         `http://localhost:8080/api/reviews/${id}`,
